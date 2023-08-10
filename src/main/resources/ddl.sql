@@ -1,4 +1,4 @@
-create table test
+create table user
 (
     id bigint auto_increment primary key,
     username varchar(20) not null,
