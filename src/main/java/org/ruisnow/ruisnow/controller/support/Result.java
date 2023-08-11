@@ -8,7 +8,7 @@ public interface Result<T> {
 
     T getData();
 
-    static <T> Result<T> success(T data) {
+    static <T> Result<T> ok(T data) {
         DataResult<T> result = new DataResult<>();
         result.code = Code.OK.ordinal();
         result.msg = Code.OK.name();
