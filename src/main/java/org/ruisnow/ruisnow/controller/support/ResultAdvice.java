@@ -25,6 +25,11 @@ public class ResultAdvice implements ResponseBodyAdvice<Object> {
 
     @Override
     public Object beforeBodyWrite(Object body, @NonNull MethodParameter returnType, @NonNull MediaType selectedContentType, @NonNull Class<? extends HttpMessageConverter<?>> selectedConverterType, @NonNull ServerHttpRequest request, @NonNull ServerHttpResponse response) {
+        /*
+         * 当Controller的方法返回值为String类型时，默认会启用StringHttpMessageConverter
+         * 此时这里如果返回Result类型，会尝试将Result转换为String，从而导致类型转换错误
+         * 故这里特殊判断，如果response body为String类型，则手动将其转换为Json string
+         */
         if (body instanceof String) {
             ObjectMapper mapper = new ObjectMapper();
             try {
