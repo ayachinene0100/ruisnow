@@ -21,6 +21,9 @@ public class GlobalErrorController {
     @Component
     private static class HandleErrorAspect {
 
+        /**
+         * 在每个handleError方法执行之前打印异常堆栈
+         */
         @Before("execution(" +
                 "public org.ruisnow.ruisnow.controller.support.ErrorResult " +
                 "org.ruisnow.ruisnow.controller.support.exception.GlobalErrorController." +

@@ -2,6 +2,11 @@ package org.ruisnow.ruisnow.controller.support.exception;
 
 import java.io.Serial;
 
+/**
+ * 业务异常类
+ * 例如：
+ * 用户名非法、用户不存在等等
+ */
 public class ServiceException extends RuntimeException {
 
     @Serial
