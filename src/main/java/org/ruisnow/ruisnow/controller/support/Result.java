@@ -10,15 +10,15 @@ public interface Result<T> {
 
     static <T> Result<T> ok(T data) {
         DataResult<T> result = new DataResult<>();
-        result.code = Code.OK.ordinal();
-        result.msg = Code.OK.name();
+        result.code = Code.OK.getValue();
+        result.msg = Code.OK.getMsg();
         result.data = data;
         return result;
     }
 
     static ErrorResult error(Throwable th, Code code) {
         ErrorResult result = new ErrorResult();
-        result.code = code.ordinal();
+        result.code = code.getValue();
         result.msg = th.getMessage();
         return result;
     }
