@@ -15,7 +15,7 @@ import static java.lang.annotation.ElementType.*;
 @Constraint(validatedBy = UsernameValidator.class)
 public @interface Username {
 
-    String message() default "用户名格式错误";
+    String message() default "{user.username.error-message}";
 
     Class<?>[] groups() default { };
 
