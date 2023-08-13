@@ -16,7 +16,7 @@ import static java.lang.annotation.ElementType.TYPE_USE;
 @Constraint(validatedBy = PasswordValidator.class)
 public @interface Password {
 
-    String message() default "密码格式错误";
+    String message() default "{user.password.error-message}";
 
     Class<?>[] groups() default { };
 
