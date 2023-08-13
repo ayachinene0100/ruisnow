@@ -13,6 +13,8 @@ import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
+import java.util.HashMap;
+
 @RestControllerAdvice
 public class ResultAdvice implements ResponseBodyAdvice<Object> {
 
@@ -25,6 +27,14 @@ public class ResultAdvice implements ResponseBodyAdvice<Object> {
 
     @Override
     public Object beforeBodyWrite(Object body, @NonNull MethodParameter returnType, @NonNull MediaType selectedContentType, @NonNull Class<? extends HttpMessageConverter<?>> selectedConverterType, @NonNull ServerHttpRequest request, @NonNull ServerHttpResponse response) {
+        if (body == null) {
+            return Result.ok(new HashMap<>());
+        }
+
+        if (body instanceof Result) {
+            return body;
+        }
+
         /*
          * 当Controller的方法返回值为String类型时，默认会启用StringHttpMessageConverter
          * 此时这里如果返回Result类型，会尝试将Result转换为String，从而导致类型转换错误

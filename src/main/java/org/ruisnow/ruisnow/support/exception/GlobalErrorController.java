@@ -1,5 +1,7 @@
 package org.ruisnow.ruisnow.support.exception;
 
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -45,5 +47,12 @@ public class GlobalErrorController {
     @ExceptionHandler(ServiceException.class)
     public ErrorResult handleError(ServiceException e) {
         return Result.error(e, Code.SERVICE_ERROR);
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ErrorResult handleError(ConstraintViolationException e) {
+        // 多个错误出现时只取第一个
+        //noinspection OptionalGetWithoutIsPresent
+        return Result.error(e.getConstraintViolations().stream().findFirst().get().getMessage(), Code.SERVICE_ERROR);
     }
 }

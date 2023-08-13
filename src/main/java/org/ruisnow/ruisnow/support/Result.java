@@ -22,4 +22,11 @@ public interface Result<T> {
         result.msg = th.getMessage();
         return result;
     }
+
+    static ErrorResult error(String msg, Code code) {
+        ErrorResult result = new ErrorResult();
+        result.code = code.getValue();
+        result.msg = msg;
+        return result;
+    }
 }
