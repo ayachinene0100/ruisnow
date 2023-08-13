@@ -1,4 +1,4 @@
-package org.ruisnow.ruisnow.controller.support;
+package org.ruisnow.ruisnow.support;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

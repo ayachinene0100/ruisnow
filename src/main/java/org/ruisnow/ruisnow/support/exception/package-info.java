@@ -3,4 +3,4 @@
  * {@code GlobalErrorController}类用来实现对各种异常对处理，
  * 其他类为自定义通用异常
  */
-package org.ruisnow.ruisnow.controller.support.exception;
+package org.ruisnow.ruisnow.support.exception;

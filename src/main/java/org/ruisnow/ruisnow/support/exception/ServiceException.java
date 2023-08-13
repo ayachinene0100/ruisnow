@@ -1,4 +1,4 @@
-package org.ruisnow.ruisnow.controller.support.exception;
+package org.ruisnow.ruisnow.support.exception;
 
 import java.io.Serial;
 

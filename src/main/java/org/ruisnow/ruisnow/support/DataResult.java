@@ -1,4 +1,4 @@
-package org.ruisnow.ruisnow.controller.support;
+package org.ruisnow.ruisnow.support;
 
 public class DataResult<T> extends BaseResult<T> {
 

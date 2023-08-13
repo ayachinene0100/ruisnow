@@ -1,11 +1,11 @@
-package org.ruisnow.ruisnow.controller.support.exception;
+package org.ruisnow.ruisnow.support.exception;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
-import org.ruisnow.ruisnow.controller.support.Code;
-import org.ruisnow.ruisnow.controller.support.ErrorResult;
-import org.ruisnow.ruisnow.controller.support.Result;
+import org.ruisnow.ruisnow.support.Code;
+import org.ruisnow.ruisnow.support.ErrorResult;
+import org.ruisnow.ruisnow.support.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -25,8 +25,8 @@ public class GlobalErrorController {
          * 在每个handleError方法执行之前打印异常堆栈
          */
         @Before("execution(" +
-                "public org.ruisnow.ruisnow.controller.support.ErrorResult " +
-                "org.ruisnow.ruisnow.controller.support.exception.GlobalErrorController." +
+                "public org.ruisnow.ruisnow.support.ErrorResult " +
+                "org.ruisnow.ruisnow.support.exception.GlobalErrorController." +
                 "handleError(..))")
         public void beforeHandle(JoinPoint joinPoint) {
             for (Object arg : joinPoint.getArgs()) {

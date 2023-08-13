@@ -1,4 +1,4 @@
-package org.ruisnow.ruisnow.controller.support;
+package org.ruisnow.ruisnow.support;
 
 import java.util.HashMap;
 import java.util.Map;
