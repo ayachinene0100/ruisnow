@@ -4,3 +4,16 @@ spring:
     url: jdbc:mysql://localhost:3306/ruisnow?serverTimeZone=Asia/Shanghai&useUnicode=ture&characterEncoding=utf8
     username: ruisnow
     password: 12345678
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,env,configprops
+  endpoint:
+    env:
+      enabled: true
+      show-values: always
+    configprops:
+      enabled: true
+      show-values: always
