@@ -1,6 +1,5 @@
 package org.ruisnow.ruisnow.support.exception;
 
-import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
@@ -24,12 +23,11 @@ public class GlobalErrorController {
     private static class HandleErrorAspect {
 
         /**
-         * 在每个handleError方法执行之前打印异常堆栈
+         * 在非业务异常处理之前打印异常堆栈
          */
         @Before("execution(" +
                 "public org.ruisnow.ruisnow.support.ErrorResult " +
-                "org.ruisnow.ruisnow.support.exception.GlobalErrorController." +
-                "handleError(..))")
+                "GlobalErrorController.handleError(Throwable))")
         public void beforeHandle(JoinPoint joinPoint) {
             for (Object arg : joinPoint.getArgs()) {
                 if (arg instanceof Throwable) {
@@ -41,7 +39,7 @@ public class GlobalErrorController {
 
     @ExceptionHandler(Throwable.class)
     public ErrorResult handleError(Throwable th) {
-        return Result.error(th, Code.INTERNAL_ERROR);
+        return Result.error("Internal error!", Code.INTERNAL_ERROR);
     }
 
     @ExceptionHandler(ServiceException.class)
