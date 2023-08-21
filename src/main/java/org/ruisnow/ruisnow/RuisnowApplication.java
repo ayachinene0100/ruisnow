@@ -9,5 +9,4 @@ public class RuisnowApplication {
     public static void main(String[] args) {
         SpringApplication.run(RuisnowApplication.class, args);
     }
-
 }

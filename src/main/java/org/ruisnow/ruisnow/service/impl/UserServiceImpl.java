@@ -4,8 +4,13 @@ import org.ruisnow.ruisnow.domain.User;
 import org.ruisnow.ruisnow.support.exception.UserExistsException;
 import org.ruisnow.ruisnow.repository.UserRepository;
 import org.ruisnow.ruisnow.service.UserService;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
+
+import java.util.ArrayList;
+import java.util.Optional;
 
 @Service
 @Validated
@@ -28,5 +33,15 @@ public class UserServiceImpl implements UserService {
         user.setUsername(username);
         user.setPassword(password);
         userRepository.save(user);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Optional<User> optionalUser = userRepository.findByUsername(username);
+        if (optionalUser.isEmpty()) {
+            return null;
+        }
+        User user = optionalUser.get();
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), new ArrayList<>());
     }
 }
