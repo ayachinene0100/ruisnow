@@ -17,11 +17,8 @@ public class User extends AbstractEntity {
 
     public static final Pattern PASSWORD_PATTERN = Pattern.compile(PASSWORD_REGEX);
 
-
-    @Username
     private String username;
 
-    @Password
     private String password;
 
     public String getUsername() {
