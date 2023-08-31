@@ -25,7 +25,8 @@ public class SecurityConfig {
             .formLogin(form ->
                 form.successHandler(new LoginSuccessHandler())
                     .failureHandler(new LoginFailureHandler())
-                    .permitAll());
+                    .permitAll())
+            .exceptionHandling(ex -> ex.authenticationEntryPoint(new JsonAuthenticationEntryPoint()));
         return http.build();
     }
 
