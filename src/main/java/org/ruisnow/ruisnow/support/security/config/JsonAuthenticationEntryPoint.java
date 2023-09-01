@@ -1,6 +1,5 @@
 package org.ruisnow.ruisnow.support.security.config;
 
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.ruisnow.ruisnow.support.Code;
@@ -13,8 +12,10 @@ import java.io.IOException;
 
 public class JsonAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
+    @SuppressWarnings("RedundantThrows")
     @Override
-    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
+    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException {
+        //noinspection deprecation
         response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
         response.getWriter().println(Result.error("请登录", Code.SERVICE_ERROR));
     }

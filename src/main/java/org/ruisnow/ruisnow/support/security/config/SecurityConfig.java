@@ -18,10 +18,11 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        //noinspection Convert2MethodRef
         http
             // 为简单起见，先关闭CSRF保护
             .csrf(csrf -> csrf.disable())
-            .authorizeHttpRequests(authorize -> authorize.requestMatchers("/portal/**").authenticated())
+            .authorizeHttpRequests(authorize -> authorize.anyRequest().authenticated())
             .formLogin(form ->
                 form.successHandler(new LoginSuccessHandler())
                     .failureHandler(new LoginFailureHandler())
@@ -32,6 +33,6 @@ public class SecurityConfig {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers("/signUp");
+        return (web) -> web.ignoring().requestMatchers("/signUp", "/api/**");
     }
 }
